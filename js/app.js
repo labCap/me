@@ -203,3 +203,47 @@ function tabsShow(
     btnRemoveClass.classList.remove("glitched");
   });
 }
+
+let input = document.querySelectorAll("input");
+let footerBtn = document.querySelector(".footer__btn");
+
+for (let i = 0; i < input.length; i++) {
+  const thisInput = input[i];
+  footerBtn.addEventListener("click", () => {
+    if (thisInput.value === "/cat") {
+      document.body.insertAdjacentHTML(
+        `beforeend`,
+        `
+        <div class="cat-img" 
+        style="
+          position: absolute;
+          width: 60px;
+          height: 60px;
+          left: ${Math.floor(Math.random() * window.innerWidth)}px;
+          top: ${Math.floor(
+            Math.random() * window.pageYOffset + window.innerHeight
+          )}px;
+        ">
+          <img src="img/cat.gif" alt="" >
+        </div>
+          
+          `
+      );
+      let catImg = document.querySelectorAll(".cat-img");
+      console.log(catImg);
+      for (let i = 0; i < catImg.length; i++) {
+        const thisCatImg = catImg[i];
+
+        thisCatImg.addEventListener("click", () => {
+          thisCatImg.innerHTML = `
+          miu😺
+          `;
+
+          setTimeout(() => {
+            thisCatImg.remove();
+          }, 3000);
+        });
+      }
+    }
+  });
+}
