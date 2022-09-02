@@ -126,10 +126,10 @@ if (animItems.length > 0) {
         pageYOffset > animItemOffset - animItemPoint &&
         pageYOffset < animItemOffset + animItemHeight
       ) {
-        animItem.classList.add("__active");
+        animItem.classList.add("__active-anim");
       } else {
         if (!animItem.classList.contains("__anim-no-hide")) {
-          animItem.classList.remove("__active");
+          animItem.classList.remove("__active-anim");
         }
       }
     }
@@ -146,4 +146,60 @@ if (animItems.length > 0) {
   setTimeout(() => {
     animOnScroll();
   }, 300);
+}
+
+// const historyBtn = document.querySelector(".history-btn"),
+//   history = document.querySelector(".history"),
+//   historyTitle = document.querySelector(".about-me__title-history"),
+//   plans = document.querySelector(".plans"),
+//   plansBtn = document.querySelector(".plans-btn"),
+//   plansTitle = document.querySelector(".about-me__title-plans");
+
+const history = {
+  item: document.querySelector(".history"),
+  btn: document.querySelector(".history-btn"),
+  title: document.querySelector(".about-me__title-history"),
+};
+
+const plans = {
+  item: document.querySelector(".plans"),
+  btn: document.querySelector(".plans-btn"),
+  title: document.querySelector(".about-me__title-plans"),
+};
+
+tabsShow(
+  history.btn,
+  plans.btn,
+  history.item,
+  plans.item,
+  history.title,
+  plans.title
+);
+tabsShow(
+  plans.btn,
+  history.btn,
+  plans.item,
+  history.item,
+  plans.title,
+  history.title
+);
+
+function tabsShow(
+  btnAddClass,
+  btnRemoveClass,
+  tabAddClass,
+  tabRemoveClass,
+  titleAddClass,
+  titleRemoveClass
+) {
+  btnAddClass.addEventListener("click", () => {
+    tabAddClass.classList.toggle("__active");
+    tabRemoveClass.classList.remove("__active");
+
+    btnAddClass.classList.toggle("__active");
+    btnRemoveClass.classList.remove("__active");
+
+    btnAddClass.classList.toggle("glitched");
+    btnRemoveClass.classList.remove("glitched");
+  });
 }
